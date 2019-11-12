@@ -102,14 +102,16 @@ def proxy_thread(clientSocket, clientAddress):
                 print('Error: {}'.format(e))
                 sys.exit(1)
 
-            print('Data: {}'.format(data))
+            if DEBUG:
+                print('Data: {}'.format(data))
 
             if len(data) > 0:
                 # send to browser
-                print('Sending to browser: {}'.format(data))
+                if DEBUG:
+                    print('Sending to browser: {}'.format(data))
                 clientSocket.send(data)
             else:
-                print('Else')
+                # connection is closed
                 break
 
         # close both sockets
